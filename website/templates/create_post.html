@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+    Create Post
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='create_post.css') }}">
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        <div> <h3> Create Post </h3> </div>
+        <textarea name="text" id="text" placeholder="What's on your mind?"></textarea>
+        <button type="submit" value="submit">Post</button>
+    </form>
+
+    <a href="/home" class="back-link"> <button class="back-btn"> Back </button> </a>
+
+{% endblock %}

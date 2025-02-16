@@ -1,0 +1,67 @@
+
+.card {
+    width: 40vw;
+    height: fit-content;
+    display: flex;
+    margin-left: 30%;
+    margin-top: 20px;
+}
+
+.card-header {
+    text-align: center;
+    background-color: cornflowerblue;
+    position: relative;
+}
+
+.comment-section {
+    margin-bottom: 1em;
+}
+
+blockquote p::first-letter {
+    font-size: 36px;
+    color: limegreen;
+}
+
+blockquote p::selection,
+blockquote footer::selection {
+    background-color: cornflowerblue;
+    line-height: 1;
+}
+
+.dropdown {
+    position: absolute;
+    left: 83%;
+    right: 0;
+}
+
+.create-post-link {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    margin-top: 1em;
+}
+
+.create-post-btn {
+    background-color: cornflowerblue;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: larger;
+}
+
+.comment-section button {
+    background-color: cornflowerblue;
+    color: white;
+    padding: 3px 9px;
+    border: none;
+}
+
+.comment-section input::placeholder {
+    padding-left: 4px;
+}
+
+.comment-section button:hover,
+.create-post-btn:hover {
+    background-color: rgb(63, 119, 223);
+}
+

@@ -1,0 +1,41 @@
+
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+    margin-top: 8px;
+}
+
+form textarea {
+    width: 30vw;
+    height: 35vh;
+}
+
+form textarea::placeholder {
+    padding-left: 5px;
+}
+
+form button {
+    margin-top: 8px;
+    padding: 10px;
+    font-size: 1.3em;
+}
+
+form button:hover,
+.back-btn:hover {
+    text-decoration: underline;
+    background-color: rgb(239, 228, 209);
+    transition: background-color 0.15s;
+}
+
+.back-link {
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.back-btn {
+    padding: 10px;
+    font-size: 1.3em;
+}

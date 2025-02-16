@@ -1,0 +1,17 @@
+
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+    margin-top: 8px;
+}
+
+form button {
+    margin-top: 8px;
+}
+
+form button:hover {
+    text-decoration: underline;
+    background-color: rgb(239, 228, 209);
+    transition: background-color 0.15s;
+}
