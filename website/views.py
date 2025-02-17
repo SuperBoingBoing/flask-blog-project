@@ -18,16 +18,6 @@ def fetch_data():
     conn.close()
     return results
 
-def fetch_comment_data():
-    base = connect_db()
-    conn = base.cursor()
-    conn.execute("SELECT text FROM `blog_comment`")
-    comments = conn.fetchall()
-    base.commit()
-    base.close()
-    conn.close()
-    return comments
-
 def add_data(text, author_id):
     base = connect_db()
     conn = base.cursor()
@@ -39,7 +29,7 @@ def add_data(text, author_id):
 def delete_data(id):
     base = connect_db()
     conn = base.cursor()
-    conn.execute("DELETE FROM `blog_post` WHERE id = %s", (id))
+    conn.execute("DELETE FROM `blog_post` WHERE id = %s", (id,))
     base.commit()
     base.close()
     conn.close()
@@ -47,28 +37,18 @@ def delete_data(id):
 def get_post_id(author_id):
     base = connect_db()
     conn = base.cursor()
-    conn.execute("SELECT (id) FROM `blog_post` WHERE author_id = %s", (author_id))
+    conn.execute("SELECT (id) FROM `blog_post` WHERE author_id = %s", (author_id,))
     result = conn.fetchone()
     base.commit()
     base.close()
     conn.close()
     return result
 
-def add_comment_data(comment, post_id, author_id):
-    base = connect_db()
-    conn = base.cursor()
-    conn.execute("INSERT INTO `blog_comment` (text, post_id, author_id) VALUES (%s, %s, %s)", (comment, post_id, author_id),)
-    base.commit()
-    base.close()
-    conn.close()
-
-
 @views.route('/')
 @views.route('/home')
 def home():
     results = fetch_data()
-    comments = fetch_comment_data()
-    return render_template('home.html', results=results, comments=comments)
+    return render_template('home.html', results=results)
 
 @views.route('/create-post', methods=['POST', 'GET'])
 def create_post():
@@ -82,7 +62,6 @@ def create_post():
             return redirect(url_for('views.home'))
 
     return render_template('create_post.html')
-
 
 @views.route('/delete-post/<int:id>', methods=['POST'])
 def delete_post(id):
@@ -110,17 +89,3 @@ def delete_post(id):
             conn.close()     
     
     return redirect(url_for("views.home"))
-
-
-@views.route('/create-comment/<int:post_id>', methods=["POST"])
-def create_comment(post_id):
-    comment = request.form.get("comment")
-    if not comment:
-        flash("Comment cannot be empty...", category="danger")
-
-    else:
-        email = session["email"]
-        author_id = get_id(email)
-        add_comment_data(comment, post_id, author_id['id'])
-
-    return redirect(url_for("views.home"), comment=comment)
