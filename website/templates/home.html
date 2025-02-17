@@ -32,13 +32,7 @@
         <div class="card-body">
             <blockquote class="blockquote mb-0">
                 <p> {{ result.post_text }} </p>
-                {% for comment in comments %}
-                    <div> {{comment.text}} </div>
-                {% endfor %}
-                <form action="/create-comment/{{ result.post_id }}" method="post" class="comment-section">
-                    <input type="text" name="comment" id="comment" placeholder="Comment...">
-                    <button type="submit"> Comment </button>
-                </form>
+
                 <footer class="blockquote-footer"> {{ result.post_time }} </footer>
             </blockquote>
         </div>
