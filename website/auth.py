@@ -1,19 +1,11 @@
 from flask import Blueprint, render_template, redirect, session, url_for, request, flash
-import pymysql, os
+import pymysql
 import pymysql.cursors
 
 auth = Blueprint('auth', __name__)
 
 def connect_db():
-    if os.environ.get('PYTHONANYWHERE'): # Check if running on PyhtonAnywhere
-        return pymysql.connect(host=os.environ.get('DB_HOST'),
-                               user=os.environ.get('DB_USER'),
-                               password=os.environ.get('DB_PASSWORD'),
-                               database=os.environ.get('DB_NAME'),
-                               cursorclass=pymysql.cursors.DictCursor)
-    
-    else: # local development XAMPP
-        return pymysql.connect(host='localhost', user='root',
+    return pymysql.connect(host='localhost', user='root',
                             password='', database='flask_python',
                             cursorclass=pymysql.cursors.DictCursor)
 
